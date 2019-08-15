@@ -5,12 +5,12 @@ void main() {
     home: Home(),
   ));
 }
-//
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
+//
 class _HomeState extends State<Home> {
 
   String _result = "Result";
@@ -104,20 +104,23 @@ class _HomeState extends State<Home> {
     double isFracaoG = _graus % 1.0;
     double isFracaoP = _P % 1.0;
 
-    if (i != 50) {
+    if (i != 9) {
       if (isFracaoG == 0.0 && isFracaoP == 0.0) {
         _graus = _graus / i;
         _P = _P / i;
+        print("$i : Graus=> $_graus and P=> $_P  -- have");
         _calculate(_graus, _P, i);
       } else {
+        print("$i : Graus=> $_graus and P=> $_P -- not have more ");
         _graus = _graus * i;
         _P = _P * i;
         i++;
+        print("$i : Graus=> $_graus and P=> $_P -- go");
         _calculate(_graus, _P, i);
       }
     } else {
-      /*print("PI: $_graus");
-        print("graus: $_P");*/
+      print("PI: $_graus");
+      print("graus: $_P");
       int a = _graus.floor();
       int b = _P.floor();
       setState(() {
