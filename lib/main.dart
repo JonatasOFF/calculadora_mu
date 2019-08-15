@@ -105,7 +105,7 @@ class _HomeState extends State<Home> {
     double isFracaoG = _graus % 1.0;
     double isFracaoP = _P % 1.0;
 
-    if (i != 9) {
+    if (i != 10) {
       if (isFracaoG == 0.0 && isFracaoP == 0.0) {
         _graus = _graus / i;
         _P = _P / i;
