@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  //
+  //Test fazendo Test aqlooo
   void _calculate(double _graus, double _P, int i) {
     double isFracaoG = _graus % 1.0;
     double isFracaoP = _P % 1.0;
