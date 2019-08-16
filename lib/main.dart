@@ -101,31 +101,42 @@ class _HomeState extends State<Home> {
     );
   }
 
-  //Test fazendo Test aqlooo
+  //TODO: Verificar se possivel colocar method em o @override, ele será usado várias vezes de diferentes maneiras
   void _calculate(double _graus, double _P, int i) {
+    //Utilizado para saber se o número que FOI dividido é decimal ou não
     double isFracaoG = _graus % 1.0;
     double isFracaoP = _P % 1.0;
 
+    //Limit de 9, (kk pode colocar i <= 9 que é bem mais eficiente)
     if (i != 10) {
+      //verifica se o número é decimal
       if (isFracaoG == 0.0 && isFracaoP == 0.0) {
+        //dividi sabendo que o número NÂO é decimal
         _graus = _graus / i;
         _P = _P / i;
+        //melhor observação do funcionamento
         print("$i : Graus=> $_graus and P=> $_P  -- have");
+
         _calculate(_graus, _P, i);
+
+        //se a ultima vez que ele foi dividido deu número decimal
       } else {
         print("$i : Graus=> $_graus and P=> $_P -- not have more ");
+        //então o methodo "desfaz" a divisão, e aumenta o divisor para que na proxima
         _graus = _graus * i;
         _P = _P * i;
         i++;
         print("$i : Graus=> $_graus and P=> $_P -- go");
         _calculate(_graus, _P, i);
       }
+      //end
     } else {
       print("PI: $_graus");
       print("graus: $_P");
       int a = _graus.floor();
       int b = _P.floor();
       setState(() {
+        //mostra pro usuario bem bonitinho os simbolizinho e pá
         _result = a == 1 && b == 1 ? "π"
             : a == 1 && b != 1 ? "π / $b"
             : a != 1 && b == 1 ? "$aπ"
