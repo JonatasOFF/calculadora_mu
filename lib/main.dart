@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 //
 class _HomeState extends State<Home> {
 
-  String _result = "Result";
+  String _result = "MUDEI AQUI PORRA";
   TextEditingController _grausController = TextEditingController();
 
 
