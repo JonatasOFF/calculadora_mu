@@ -11,18 +11,20 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
 //
 class _HomeState extends State<Home> {
 
-  String _result = "MUDEI AQUI PORRA";
+  bool fracao = false;
+  String Cima = "";
+  String Baixo = "";
   TextEditingController _grausController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Page"),
+        title: Text("Graus para Radianos"),
         backgroundColor: Colors.orangeAccent,
       ),
       //TODO: Como mudar o layout body e atualizar para que possa mudar o tipo de conta feita (ex: Calcular graus em radianos mudar para radianos em graus)
@@ -41,48 +43,76 @@ class _HomeState extends State<Home> {
                   color: Colors.black,
                 ),
               ),
-              padding:
-              EdgeInsets.only(left: 2.0, top: 10.0, right: 2.0, bottom: 2.0),
+              padding: EdgeInsets.only(
+                  left: 10.0, top: 10.0, right: 10.0, bottom: 2.0),
             ),
             // TODO: Da uma ajuda aqui namoral (aliamento do result, onde colocar) RaisedButton
             Container(
                 child: Padding(
-                  child: RaisedButton(onPressed: () {
+              child: RaisedButton(
+                  onPressed: () {
                     double _graus = double.parse(_grausController.text);
                     double _P = 180;
                     _calculate(_graus, _P, 2);
                   },
-                      color: Colors.deepOrange,
-                      child: Text("Calcular",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25.0
-                        ),
-                      )
+                  color: Colors.orangeAccent,
+                  child: Text(
+                    "Calcular",
+                    style: TextStyle(color: Colors.black, fontSize: 25.0),
+                  )),
+              padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
+            )),
+            Column(
+              children: <Widget>[
+                Text(
+                  Cima,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30.0, color: Colors.black),
+                ),
+                Visibility(
+                  visible: fracao,
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Container(
+                      width: 100,
+                      height: 5,
+                      color: Colors.black,
+                    ),
                   ),
-                  padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
-                )),
-            Text(
-              _result,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30.0, color: Colors.black),
+                ),
+                Text(
+                  Baixo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30.0, color: Colors.black),
+                ),
+              ],
             ),
           ],
         ),
       ),
-      backgroundColor: Colors.deepOrangeAccent,
+      backgroundColor: Color.fromRGBO(230, 230, 230, 1),
       //Menubar
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text("Types of Counts"),
-              decoration: BoxDecoration(color: Colors.orangeAccent),
+            SizedBox(
+              child: DrawerHeader(
+                child: Text(
+                  "Conversões",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.orangeAccent,
+                ),
+              ),
+              height: 90,
             ),
             // TODO: Ver doc para descobrir como colocar items dentro de uma list, e colocar eles aqui / apenas colocar manualmente
             ListTile(
-              title: Text("Item 1"),
+              title: Text("Graus para Radianos"),
               onTap: () {
                 //update
                 //Fecha após o usuario escolher o que será selecionado, (passando contexto, O app karai)
@@ -90,7 +120,7 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
-              title: Text("Item 2"),
+              title: Text("Radianos para Graus"),
               onTap: () {
                 //update
               },
@@ -136,11 +166,18 @@ class _HomeState extends State<Home> {
       int a = _graus.floor();
       int b = _P.floor();
       setState(() {
-        //mostra pro usuario bem bonitinho os simbolizinho e pá
-        _result = a == 1 && b == 1 ? "π"
-            : a == 1 && b != 1 ? "π / $b"
+        Cima = a == 1 && b == 1
+            ? "π"
+            : a == 1 && b != 1 ? "π"
             : a != 1 && b == 1 ? "$aπ"
-            : "$aπ / $b";
+            : "$aπ";
+        Baixo = a == 1 && b == 1
+            ? ""
+            : a == 1 && b != 1 ? "$b"
+            : a != 1 && b == 1 ? ""
+            : "$b";
+        if(b != 1) {fracao = true;}
+        else {fracao = false;}
       });
     }
   }
