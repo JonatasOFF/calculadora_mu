@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ScreenGforR extends StatelessWidget {
+class ScreenRforG extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

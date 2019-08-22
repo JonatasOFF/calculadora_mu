@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ScreenRforG.dart';
+import 'ScreenGforR.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -13,24 +13,54 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-
 class _HomeState extends State<Home> {
+
+  final List<String> _texts = [
+    "Graus para Radiano",
+    "Radiano para Graus",
+    "nossa, isso é qualquer coisa"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Graus para Radianos"),
+          title: Text("Tela inicial"),
           backgroundColor: Colors.orangeAccent,
         ),
-        //TODO: Fazer nova layout para escolher qual operação usar (graus for Rad, Rad for graus, Analise combinatoria(???) ISSO NUMA LISTA!
-        //Codigo para abrir uma nova aba de layout
 
-        //Navigator.push(context,
-        //MaterialPageRoute(builder: (context) => newClass()));
-        body: SingleChildScrollView(
-          child: null,
+        body: ListView.builder(
+          itemCount: _texts.length,
+          itemBuilder: (BuildContext context, int index) {
+            return RaisedButton(
+              child: Row(
+                children: <Widget>[
+                  Padding(child: Text(_texts[index]),
+                    padding: EdgeInsets.only(right: 10),
+                  ),
+                  //TODO: Colocar novos icones
+                  //TODO: Animação do botão se quiser
+                  Icon(Icons.access_alarms),
+                ],
+              ), onPressed: () {
+              createActivity(index);
+            },
+            );
+          },
         )
     );
+  }
+
+  void createActivity(int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ScreenGforR()));
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      default:
+    }
   }
 }
