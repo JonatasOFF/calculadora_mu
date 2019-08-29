@@ -86,7 +86,6 @@ class _ScreenRforGState extends State<ScreenRforG> implements Calculate {
     double pi = double.parse(_pi.text);
     double divisor = double.parse(_divisor.text);
 
-    double result = (pi * 180) / divisor;
     setState(() {
       double result = (pi * 180) / divisor;
       _result = "$resultº";
