@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'ScreenGforR.dart';
+import 'ScreenRforG.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -57,6 +58,8 @@ class _HomeState extends State<Home> {
             context, MaterialPageRoute(builder: (context) => ScreenGforR()));
         break;
       case 1:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ScreenRforG()));
         break;
       case 2:
         break;

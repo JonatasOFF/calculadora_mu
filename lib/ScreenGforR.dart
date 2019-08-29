@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'Calculate.dart';
 
 class ScreenGforR extends StatefulWidget {
@@ -45,7 +46,9 @@ class _ScreenGforRState extends State<ScreenGforR> implements Calculate {
                   onPressed: () {
                     try {
                       calculate(
-                          double.parse(_grausController.text), PI_GRAUS, 2);
+                          graus: double.parse(_grausController.text),
+                          P: PI_GRAUS,
+                          i: 2);
                     } catch (Exception) {
                       print(
                           "Cola essa droga aqui no negocio e muda tudo caso essa mensagem apareça"
@@ -129,7 +132,7 @@ class _ScreenGforRState extends State<ScreenGforR> implements Calculate {
   }
 
   @override
-  void calculate(double graus, double P, int i) {
+  void calculate({double graus, double P, int i}) {
     // TODO: implement calculate
     //Utilizado para saber se o número que FOI dividido é decimal ou não
     double isFracaoG = graus % 1.0;
@@ -144,7 +147,7 @@ class _ScreenGforRState extends State<ScreenGforR> implements Calculate {
         //melhor observação do funcionamento
         print("$i : Graus=> $graus and P=> $P  -- have");
 
-        calculate(graus, P, i);
+        calculate(graus: graus, P: P, i: i);
 
         //se a ultima vez que ele foi dividido deu número decimal
       } else {
@@ -154,7 +157,7 @@ class _ScreenGforRState extends State<ScreenGforR> implements Calculate {
         P = P * i;
         i++;
         print("$i : Graus=> $graus and P=> $P -- go");
-        calculate(graus, P, i);
+        calculate(graus: graus, P: P, i: i);
       }
       //end
     } else {

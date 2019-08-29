@@ -6,5 +6,5 @@ abstract class Calculate {
    * P : Valor de PI  em graus que é mudado(180)
    * i: Valor que divide
    */
-  void calculate(double graus, double P, int i);
+  void calculate({double graus, double P, int i});
 }

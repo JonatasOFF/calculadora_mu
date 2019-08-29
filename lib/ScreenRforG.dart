@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
-class ScreenRforG extends StatelessWidget {
+import 'Calculate.dart';
+
+class ScreenRforG extends StatefulWidget {
+  @override
+  _ScreenRforGState createState() => _ScreenRforGState();
+}
+
+class _ScreenRforGState extends State<ScreenRforG> implements Calculate {
+  TextEditingController _pi = TextEditingController();
+  TextEditingController _divisor = TextEditingController();
+  String _result = "Result";
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -15,8 +27,9 @@ class ScreenRforG extends StatelessWidget {
             Padding(
               child: TextFormField(
                 keyboardType: TextInputType.number,
+                controller: _pi,
                 decoration: InputDecoration(
-                    labelText: "Informe Grausº",
+                    labelText: "π",
                     labelStyle: TextStyle(color: Colors.black)),
                 style: TextStyle(
                   fontSize: 25.0,
@@ -26,42 +39,36 @@ class ScreenRforG extends StatelessWidget {
               padding: EdgeInsets.only(
                   left: 10.0, top: 10.0, right: 10.0, bottom: 2.0),
             ),
-            // TODO: Da uma ajuda aqui namoral (aliamento do result, onde colocar) RaisedButton
+            Padding(
+              child: TextFormField(
+                keyboardType: TextInputType.number,
+                controller: _divisor,
+                decoration: InputDecoration(
+                    labelText: "Divisor",
+                    labelStyle: TextStyle(color: Colors.black)),
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.black,
+                ),
+              ),
+              padding: EdgeInsets.only(
+                  left: 10.0, top: 10.0, right: 10.0, bottom: 2.0),
+            ),
             Container(
                 child: Padding(
-              child: RaisedButton(
-                  onPressed: () {
-                    /**
-                         * MUDAR URGENTEMENTE ESSA DROGA, OLHA ISSO MANO, ISSO TA MUITO DESORGANIZADO
-                         */
-                  },
-                  color: Colors.orangeAccent,
-                  child: Text(
-                    "Calcular",
-                    style: TextStyle(color: Colors.black, fontSize: 25.0),
-                  )),
-              padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
-            )),
+                  child: RaisedButton(
+                      onPressed: calculate,
+                      color: Colors.orangeAccent,
+                      child: Text(
+                        "Calcular",
+                        style: TextStyle(color: Colors.black, fontSize: 25.0),
+                      )),
+                  padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
+                )),
             Column(
               children: <Widget>[
                 Text(
-                  "isso é um text",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 30.0, color: Colors.black),
-                ),
-                /*Visibility(
-                  visible: fracao,
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Container(
-                      width: 100,
-                      height: 5,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),*/
-                Text(
-                  "isso também é outro texto",
+                  _result,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30.0, color: Colors.black),
                 ),
@@ -72,4 +79,18 @@ class ScreenRforG extends StatelessWidget {
       ),
     );
   }
+
+
+  @override
+  void calculate({double graus, double P, int i}) {
+    double pi = double.parse(_pi.text);
+    double divisor = double.parse(_divisor.text);
+
+    double result = (pi * 180) / divisor;
+    setState(() {
+      double result = (pi * 180) / divisor;
+      _result = "$resultº";
+    });
+  }
+
 }
